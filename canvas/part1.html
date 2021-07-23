@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- canvas三要素：id作为唯一标识 width: 画布内容宽度的像素大小（与style的宽度和高度是有区别的） height：画布内容高度的像素大小-->
+    <!-- canvas仅仅是一个画布标签，要绘制内容，必须用js绘制 -->
+    <!-- 当浏览器不支持canvas时，浏览器会认为是一个普通的自定义标签，标签中的内容会展示出来 -->
+    <canvas id="canvas1" width="600" height="600">这里的内容正常是不显示的，提示：你的浏览器不支持canvas</canvas>
+</body>
+<script>
+    // 1.找到画布对象
+    const canvas1 = document.querySelector('#canvas1')
+    console.log([canvas1])
+
+    // 2.上下文对象（画笔）
+    const ctx = canvas1.getContext('2d') //  webgl 就是 3d   游戏引擎：白鹭引擎、three.js（贝壳找房的VR）、虚幻4引擎（生化危机、吃鸡、方舟、百度引擎）
+    console.log(ctx)
+
+    //3.绘制路径
+    ctx.rect(50,50,300,300)
+
+    //4.填充
+    ctx.fillStyle = "aqua"; //颜色
+    ctx.fill()
+
+    //5.描边，渲染路径
+    ctx.strokeStyle = "salmon"
+    ctx.lineWidth = 20
+    ctx.stroke()
+</script>
+</html>
