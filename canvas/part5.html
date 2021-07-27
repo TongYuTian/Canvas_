@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图像</title>
+</head>
+
+<body>
+    <canvas id="canvas1" width="600" height="600"></canvas>
+
+    <script>
+        var canvas1 = document.querySelector('#canvas1')
+        var ctx = canvas1.getContext('2d')
+
+        //绘制图像
+        var img = new Image()
+        img.src = "./image/undraw_female_avatar_w3jk.png"
+
+        var img2 = new Image()
+        img2.src = "./image/undraw_male_avatar_323b.png"
+
+        //并无先后顺序，不一定谁先加载出来，谁最后加载出来，谁就会覆盖在最上面
+        // ctx.drawImage(图片对象,x位置,y位置)
+        // ctx.drawImage(图片对象,x位置,y位置,宽度,高度)
+        // ctx.drawImage(图片对象,图像裁剪的x位置,图像裁剪的y位置,裁剪的宽度,裁剪的高度,x位置,y位置,宽度,高度)
+        //图像是载入的，并不是瞬间就能展示出来需要onload
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0, 100, 100); 
+            console.log(img)
+        }
+
+        img2.onload = function () {
+            ctx.drawImage(img2, 200, 200, 100, 100); //图像是载入的，并不是瞬间就能展示出来
+            console.log(img2)
+            ctx.fillText('我是水印！',400,400);
+            
+        }
+
+
+
+        //有顺序版
+        // img.onload = function () {
+        //     ctx.drawImage(img, 0, 0, 100, 100); //图像是载入的，并不是瞬间就能展示出来
+        //     console.log(img)
+
+        //     var img2 = new Image()
+        //     img2.src = "./image/undraw_male_avatar_323b.png"
+
+        //     img2.onload = function () {
+        //         ctx.drawImage(img2, 200, 200, 100, 100); //图像是载入的，并不是瞬间就能展示出来
+        //         console.log(img2)
+        //     }
+        // }
+
+
+    </script>
+</body>
+
+</html>

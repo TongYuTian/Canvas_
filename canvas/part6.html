@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频</title>
+    <!-- 如果只用video来做视频的话，只支持Mp4格式，这样原视频很容易被盗 -->
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <video src="./video/ec56d14f90f612e4737a74529d2f1a17.mp4" width="200" height="" controls></video>
+
+    <script>
+        var video = document.querySelector("video")
+        var canvas = document.querySelector('#canvas')
+        var ctx = canvas.getContext('2d')
+        var interId
+
+        //一旦开始播放执行
+        video.onplay = function () {
+            // ctx.context.drawImage(video, 0, 0, 800, 600); //只画了一帧
+            interId = setInterval(() => {
+                //底色 - 黑色
+                ctx.clearRect(0,0,800,600)
+                ctx.fillRect(0,0,800,600)
+
+                ctx.drawImage(video, 0, 100, 200,352);
+
+                //弹幕
+                ctx.font = "20px 微软雅黑"
+                ctx.strokeStyle = "#999"
+                ctx.strokeText("我是弹幕",50,50)
+            }, 16)
+        }
+
+        video.onpause = function(){
+            clearInterval(interId)
+        }
+    </script>
+</body>
+
+</html>
